@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HistoryModel extends Model
+class UserModel extends Model
 {
     use HasFactory;
-    protected $table = "history";
+    protected $table = "user_chat";
     protected $primarykey = "id";
     public $timestamps = false;
     public $fillable = [
-        'id_question',
-        'id_user',
-        'question',
-        'answer'
+        'username',
+        'name',
+        'password'
     ];
 }
