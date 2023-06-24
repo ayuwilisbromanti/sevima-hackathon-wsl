@@ -1,6 +1,16 @@
 var routes = [
     {
         path : '/',
+        name : 'Login',
+        component : Login
+    },
+    {
+        path :'/register',
+        name : 'Register',
+        component : Register
+    },
+    {
+        path :'/chat',
         name : 'Chat',
         component : Chat
     }
@@ -13,7 +23,7 @@ var router = VueRouter.createRouter({
 var app = Vue.createApp({
     data(){
         return{
-            title:"Welcome to Lalaundry"
+            
         }
     }
 });

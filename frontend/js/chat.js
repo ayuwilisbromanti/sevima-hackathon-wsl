@@ -1,5 +1,21 @@
 var Chat ={
     template : `
+    <div class="row clearfix">
+    <div class="col-lg-12">
+    <div class="card chat-app">
+    <div class="chat">
+    <div class="chat-header clearfix">
+    <div class="row">
+    <div class="col-lg-6">
+    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+    </a>
+    <div class="chat-about">
+    <h6 class="m-b-0">WSL Assistant</h6>
+    </div>
+    </div>
+    </div>
+    </div>
     <div class="chat-history" v-for="history in list_answer">
     <ul class="m-b-0">
     <li class="clearfix">
@@ -31,7 +47,8 @@ var Chat ={
     data(){
         return{
             list_answer:[],
-            question:''
+            question:'',
+            id_user : 1
 
         }
     },
@@ -44,12 +61,14 @@ var Chat ={
 
         async send(){
             var data_question = {
-                question:this.question
+                question:this.question,
+                id_user : this.id_user
             };
             var send = await axios.post("http://localhost/sevima-hackathon/backend/public/api/get_question", data_question);
             console.log(send);
             if(send.data.status == true){
                 this.get_answer();
+                this.question = '';
             }else{
                 alert("Gagal!");
             }
