@@ -13,7 +13,7 @@ class HistoryModel extends Model
     public $timestamps = false;
     public $fillable = [
         'id_question',
-        'id_user',
+        'created_at',
         'question',
         'answer'
     ];

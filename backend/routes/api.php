@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/get_question',[ChatController::class, 'getQuestion']);
+Route::post('/get_question',[ChatController::class, 'postQuestion']);
 Route::get('/get_answer',[ChatController::class, 'getAnswer']);
 Route::post('/login',[ChatController::class, 'login']);
 Route::post('/register',[ChatController::class, 'register']);

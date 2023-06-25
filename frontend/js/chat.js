@@ -27,7 +27,7 @@ var Chat ={
     </li>
     <li class="clearfix">
     <div class="message-data">
-    <span class="message-data-time">10:12 AM, Today</span>
+    <span class="message-data-time">10:12 AM, Today </span>
     </div>
     <div class="message my-message">{{history.answer}}</div>
     </li>
@@ -47,8 +47,7 @@ var Chat ={
     data(){
         return{
             list_answer:[],
-            question:'',
-            id_user : 1
+            question:''
 
         }
     },
@@ -62,7 +61,6 @@ var Chat ={
         async send(){
             var data_question = {
                 question:this.question,
-                id_user : this.id_user
             };
             var send = await axios.post("http://localhost/sevima-hackathon/backend/public/api/get_question", data_question);
             console.log(send);

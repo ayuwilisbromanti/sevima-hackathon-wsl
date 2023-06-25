@@ -13,7 +13,7 @@ var Login = {
                     <input v-model="password" type="password" class="form-control p_input text-dark">
                   </div>
                   <div class="text-center">
-                    <a type="button" v-bind:href="'#/chat'"  class="btn btn-primary btn-block enter-btn">Login</a>
+                    <a type="button" v-on:click="login()"  class="btn btn-primary btn-block enter-btn">Login</a>
                   </div>
                   <div class="text-center">
                     <a v-on:click="login()"  class="text">Belum punya akun?</a>
@@ -35,19 +35,26 @@ var Login = {
         async login(){
             var data ={
                 email : this.email,
-                password : this.password,
-                id_user
+                password : this.password
             };
+            try{
+                var login = await axios.post("http://localhost/sevima-hackathon/backend/public/api/login", data);
+                console.log(login);
+                 localStorage.setItem('user', JSON.stringify(login.data.data));
+                localStorage.setItem('status', true);
 
-            var login = await axios.post("http://localhost/sevima-hackathon/backend/public/api/login", data);
-            console.log(login.data);
-            this.status = login.data.status;
-            if(this.status == true){
-                this.$router.replace({name : "Chat"});
-            }else{
-                alert ("Gagal Login!");
-                this.$router.replace({name:"Login"});
+                 this.authenticated = true;
+                this.$router.replace({name : "Chat"})
+                location.reload()
+            }catch(error){
+                alert('Gagal')
             }
         }
+    },
+    mounted(){
+        if(localStorage.getItem('status')=='true'){
+            this.$router.replace({name : "Chat"})
+        }
     }
+
 }
